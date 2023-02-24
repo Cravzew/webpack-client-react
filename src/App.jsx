@@ -1,11 +1,10 @@
 import React from 'react';
+import Header from "./shared/Header";
 
-function App(props) {
+export function App(props) {
     return (
         <>
-            {"hello world"}
+            <Header text="Hello World SSR!"/>
         </>
     );
 }
-
-export default App;
