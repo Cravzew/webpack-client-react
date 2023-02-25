@@ -1,5 +1,6 @@
 const path = require('path')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
+const TerserWebpackPlugin = require('terser-webpack-plugin')
 
 const NODE_ENV = process.env.NODE_ENV;
 const IS_DEV = NODE_ENV === 'development'
@@ -15,19 +16,39 @@ module.exports = {
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.json']
     },
     mode: NODE_ENV ? NODE_ENV : 'development',
-    entry: path.resolve(__dirname, 'src/index.jsx'),
+    entry: path.resolve(__dirname, 'src/client/index.jsx'),
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: "index.js"
     },
     module: {
-        rules: [{
-            test: /\.[tj]sx?$/,
-            use: ['ts-loader']
-        }]
+        rules: [
+            {
+                test: /\.[tj]sx?$/,
+                use: ['ts-loader']
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    {
+                        loader: "css-loader",
+                        options: {
+                            modules: {
+                                mode: 'local',
+                                localIdentName: '[name]__[local]--[hash:base64:5]',
+                            },
+                        }
+                    }
+                ]
+            }
+        ]
     },
     plugins: [
-        new HTMLWebpackPlugin({template: path.resolve(__dirname, 'index.html')})
+        new HTMLWebpackPlugin({template: path.resolve(__dirname, 'index.html')}),
+        new TerserWebpackPlugin({
+            extractComments: false
+        })
     ],
     devServer: {
         port: 3000,
