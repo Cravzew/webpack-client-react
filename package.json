@@ -2,12 +2,15 @@
   "name": "WebpackClientReact",
   "version": "1.0.0",
   "description": "Репозиторий предназначенный для скачиваний без ручной настройки Webpack 5",
+  "engines": {
+    "node": "16.x"
+  },
   "main": "index.js",
   "scripts": {
     "build:dev": "cross-env NODE_ENV=development webpack --config webpack.config.js",
     "build:prod": "cross-env NODE_ENV=production webpack --config webpack.config.js",
     "dev": "cross-env NODE_ENV=development node ./bin/dev.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./dist/server/server.js"
   },
   "author": "Cravzew",
   "license": "ISC",
@@ -29,7 +32,9 @@
     "webpack-node-externals": "^3.0.0"
   },
   "dependencies": {
+    "compression": "^1.7.4",
     "express": "^4.18.2",
+    "helmet": "^6.0.1",
     "nodemon": "^2.0.20",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
