@@ -6,19 +6,24 @@
   "scripts": {
     "build:dev": "cross-env NODE_ENV=development webpack --config webpack.config.js",
     "build:prod": "cross-env NODE_ENV=production webpack --config webpack.config.js",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server",
+    "dev": "cross-env NODE_ENV=development node ./bin/dev.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Cravzew",
   "license": "ISC",
   "devDependencies": {
+    "@hot-loader/react-dom": "^17.0.2",
+    "clean-webpack-plugin": "^4.0.0",
     "cross-env": "^7.0.3",
     "html-webpack-plugin": "^5.5.0",
+    "react-hot-loader": "^4.13.1",
     "ts-loader": "^9.4.2",
     "typescript": "^4.9.5",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1",
+    "webpack-dev-middleware": "^6.0.1",
     "webpack-dev-server": "^4.11.1",
+    "webpack-hot-middleware": "^2.25.3",
     "webpack-node-externals": "^3.0.0"
   },
   "dependencies": {
